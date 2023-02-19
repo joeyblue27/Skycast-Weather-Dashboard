@@ -7,7 +7,6 @@
 * Easy navigation and user friendly display. 
 
 
-* Deployed Link
-
+Deployed Link!
 <a href="https://joeyblue27.github.io/Skycast-Weather-Dashboard"
 target="_blank">Launch</a>
