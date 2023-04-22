@@ -47,7 +47,7 @@ const getForecast = (location) => {
             var tempC = response.data.list[((i + 1) * 8) - 1].main.temp;
             var tempF = (((tempC - 273.5) * 1.80) + 32).toFixed(2);
 
-
+// html column for loop 
 
             $("#datecol" + i).html(date);
             $("#imgcol" + i).html("<img src=" + iconurl + ">");
@@ -63,10 +63,10 @@ const getForecast = (location) => {
 
 // creates a city search line item 
 
-function groupCities(c){
-  var appendCity= $("<li>"+c.toUpperCase()+"</li>");
+function groupCities(str){
+  var appendCity= $("<li>"+str.toUpperCase()+"</li>");
   $(appendCity).attr("class","list-group-item");
-  $(appendCity).attr("data-value",c.toUpperCase());
+  $(appendCity).attr("data-value",str.toUpperCase());
   $(".list-group").append(appendCity);
 }
 

@@ -6,6 +6,10 @@
 * Current city shows weather icons with future conditions.
 * Easy navigation and user friendly display. 
 
+![image 1](./assets/images/weather1.gif) 
+![image 2](./assets/images/weather2.png) 
+![image 3](./assets/images/weather3.png) 
+
 
 Deployed Link!
 <a href="https://joeyblue27.github.io/Skycast-Weather-Dashboard"
