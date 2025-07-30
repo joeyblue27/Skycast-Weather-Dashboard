@@ -119,6 +119,14 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 });
 
+setInterval(() => {
+  let cloud = document.createElement("div");
+  cloud.className = "cloud x" + Math.floor(Math.random() * 5 + 1);
+  cloud.style.top = Math.random() * window.innerHeight + "px";
+  document.getElementById("clouds").appendChild(cloud);
+
+  setTimeout(() => cloud.remove(), 30000);
+}, 4000);
 
 
 window.onload = function () {
