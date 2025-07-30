@@ -1,9 +1,8 @@
-// create weather variables  
-const apikey = "&appid=0b61484c8ea3e10a2bcde29856092795";
-const weatherUrl = "https://api.openweathermap.org/data/2.5/weather?q=";
-const forcastUrl = "https://api.openweathermap.org/data/2.5/forecast?id=";
+var apikey = "&appid=0b61484c8ea3e10a2bcde29856092795";
+var weatherUrl = "https://api.openweathermap.org/data/2.5/weather?q=";
+var forcastUrl = "https://api.openweathermap.org/data/2.5/forecast?id=";
 var storeCity = [];
-var saveCity="";
+var saveCity = "";
 var temp = document.querySelector('#show-temp');
 var humidity = document.querySelector('#show-humid');
 var winds = document.querySelector('#show-wind');
@@ -11,114 +10,121 @@ var inputSearch = document.querySelector('#input-search');
 var inputBtn = document.querySelector('#input-button');
 var removeBtn = document.querySelector('#remove');
 var showCity = document.querySelector('#show-city');
-var currentIcon = document.querySelectorAll('#weather-icon')
+var currentIcon = document.querySelector('#weather-icon');
 
-// retrieve weather information with api key
+// Retrieve weather information with the API key
+var getForecast = (location) => {
+    var URL = weatherUrl + location + apikey;
 
-const getForecast = (location) => {
-  var URL = weatherUrl + location + apikey;
-  axios.get(URL)
-    .then(function (response) {
+    fetch(URL)
+        .then(response => response.json())
+        .then(data => {
+            var Dates = new Date(data.dt * 1000);
+            var Day = Dates.getDate();
+            var Month = Dates.getMonth() + 1;
+            var Year = Dates.getFullYear();
+            showCity.textContent = `${data.name} (${Month}/${Day}/${Year})`;
 
-      var Dates = new Date(response.data.dt * 1000);
-      var Day = Dates.getDate();
-      var Month = Dates.getMonth() + 1;
-      var Year = Dates.getFullYear();
-      showCity.textContent = response.data.name + " (" + Month + "/" + Day + "/" + Year + ") ";
+            var tempF = (data.main.temp - 273.15) * 1.80 + 32;
+            temp.innerHTML = `${tempF.toFixed(2)}&degF`;
+            winds.textContent = `${data.wind.speed} MPH`;
+            humidity.textContent = `${data.main.humidity}%`;
 
-      var tempF = (response.data.main.temp - 273.15) * 1.80 + 32;
-      temp.innerHTML = ((tempF).toFixed(2)) + "&degF";
-      winds.textContent = response.data.wind.speed + " MPH";
-      humidity.textContent = response.data.main.humidity + "%";
-      var weathericon = response.data.weather[0].icon;
-      var iconurl = "https://openweathermap.org/img/w/" + weathericon + ".png";
+            var weathericon = data.weather[0].icon;
+            var iconurl = `https://openweathermap.org/img/w/${weathericon}.png`;
+            currentIcon.innerHTML = `<img src="${iconurl}">`;
 
-      $(currentIcon).html("<img src=" + iconurl + ">");
-
-      var weekly = forcastUrl + response.data.id + apikey;
-      axios.get(weekly)
-        .then(function (response) {
-          for (i = 0; i < 5; i++) {
-            var date = new Date((response.data.list[((i + 1) * 8) - 1].dt) * 1000);
-            var iconcode = response.data.list[((i + 1) * 8) - 1].weather[0].icon;
-            var iconurl = "https://openweathermap.org/img/w/" + iconcode + ".png";
-            var humidity = response.data.list[((i + 1) * 8) - 1].main.humidity;
-            var winds = response.data.list[((i + 1) * 8) - 1].wind.speed;
-            var tempC = response.data.list[((i + 1) * 8) - 1].main.temp;
-            var tempF = (((tempC - 273.5) * 1.80) + 32).toFixed(2);
-
-// html column for loop 
-
-            $("#datecol" + i).html(date);
-            $("#imgcol" + i).html("<img src=" + iconurl + ">");
-            $("#tempcol" + i).html(tempF + "&degF");
-            $("#humidcol" + i).html(humidity + "%");
-            $("#windcol" + i).html(winds + "MPH");
-
-          }
-
+            var weekly = forcastUrl + data.id + apikey;
+            return fetch(weekly);
         })
-    })
+        .then(response => response.json())
+        .then(data => {
+            for (let i = 0; i < 5; i++) {
+                var date = new Date(data.list[((i + 1) * 8) - 1].dt * 1000);
+                var iconcode = data.list[((i + 1) * 8) - 1].weather[0].icon;
+                var iconurl = `https://openweathermap.org/img/w/${iconcode}.png`;
+                var humidity = data.list[((i + 1) * 8) - 1].main.humidity;
+                var winds = data.list[((i + 1) * 8) - 1].wind.speed;
+                var tempC = data.list[((i + 1) * 8) - 1].main.temp;
+                var tempF = (((tempC - 273.5) * 1.80) + 32).toFixed(2);
+
+                document.querySelector(`#datecol${i}`).textContent = date;
+                document.querySelector(`#imgcol${i}`).innerHTML = `<img src="${iconurl}">`;
+                document.querySelector(`#tempcol${i}`).textContent = `${tempF}`;
+                document.querySelector(`#humidcol${i}`).textContent = `${humidity}%`;
+                document.querySelector(`#windcol${i}`).textContent = `${winds} MPH`;
+            }
+        });
+};
+
+// Create a city search line item
+function groupCities(str) {
+    var appendCity = document.createElement("li");
+    appendCity.textContent = str.toUpperCase();
+    appendCity.classList.add("list-group-item");
+    appendCity.setAttribute("data-value", str.toUpperCase());
+    document.querySelector(".list-group").appendChild(appendCity);
 }
 
-// creates a city search line item 
+function getSearch() {
+    var storedCities = JSON.parse(localStorage.getItem("cities")) || [];
+    storeCity = storedCities;
 
-function groupCities(str){
-  var appendCity= $("<li>"+str.toUpperCase()+"</li>");
-  $(appendCity).attr("class","list-group-item");
-  $(appendCity).attr("data-value",str.toUpperCase());
-  $(".list-group").append(appendCity);
+    document.querySelector(".list-group").innerHTML = ""; // Clear old list
+
+    storedCities.forEach(city => {
+        groupCities(city);
+    });
 }
 
-function pastCity(event){
-  var cityEl=event.target;
-  if (event.target.matches("li")){
-    saveCity=cityEl.textContent.trim();
-      getForecast(saveCity);
+inputBtn.addEventListener("click", function () {
+    var city = inputSearch.value.trim();
+    if (!city) return;
+
+    saveCity = city.toUpperCase();
+    getForecast(city);
+
+    if (!storeCity.includes(saveCity)) {
+        storeCity.push(saveCity);
+        localStorage.setItem("cities", JSON.stringify(storeCity));
+        groupCities(saveCity);
+    }
+
+    inputSearch.value = "";
+});
+
+
+document.querySelector(".list-group").addEventListener("click", function (event) {
+    if (event.target && event.target.matches("li.list-group-item")) {
+        var city = event.target.getAttribute("data-value");
+        getForecast(city);
+    }
+});
+
+removeBtn.addEventListener("click", function () {
+    localStorage.removeItem("cities");
+    storeCity = [];
+    document.querySelector(".list-group").innerHTML = "";
+});
+
+// Theme toggle logic
+const themeToggle = document.getElementById('theme-toggle');
+
+// Apply saved theme on load
+window.addEventListener('DOMContentLoaded', () => {
+  const savedTheme = localStorage.getItem('theme') || 'light';
+  document.body.classList.add(`${savedTheme}-theme`);
+  if (savedTheme === 'dark') {
+    themeToggle.checked = true;
   }
-
-
-}
-
-// stores the city in local storage, retrieves past city.
-
-function getSearch(){
-  $("ul").empty();
-  var storeCity = JSON.parse(localStorage.getItem("cityname"));
-  if(storeCity!==null){
-    storeCity=JSON.parse(localStorage.getItem("cityname"));
-      for(i=0; i<storeCity.length;i++){
-        groupCities(storeCity[i]);
-      }
-      saveCity=storeCity[i-1];
-      getForecast(saveCity);
-
-      
-      
-  }
-}
-
-// clears the city search
-
-function removeCities(){
-  
-  storeCity=[];
-  localStorage.removeItem("cityname");
-  document.location.reload();
-
-}
-
-$(document).on("click",pastCity);
+});
 
 
 
-inputBtn.addEventListener("click", () => {
-  getForecast(inputSearch.value)
-  groupCities(inputSearch.value)
-  })
+window.onload = function () {
+    getSearch();
+    if (storeCity.length > 0) {
+        getForecast(storeCity[storeCity.length - 1]);
+    }
+};
 
-
-removeBtn.addEventListener("click", () =>{
-  removeCities();
-} )
- 
