@@ -107,17 +107,6 @@ removeBtn.addEventListener("click", function () {
     document.querySelector(".list-group").innerHTML = "";
 });
 
-// Theme toggle logic
-const themeToggle = document.getElementById('theme-toggle');
-
-// Apply saved theme on load
-window.addEventListener('DOMContentLoaded', () => {
-  const savedTheme = localStorage.getItem('theme') || 'light';
-  document.body.classList.add(`${savedTheme}-theme`);
-  if (savedTheme === 'dark') {
-    themeToggle.checked = true;
-  }
-});
 
 setInterval(() => {
   let cloud = document.createElement("div");
