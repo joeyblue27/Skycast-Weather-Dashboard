@@ -1,15 +1,4 @@
-/*Lets start with the cloud formation rather*/
-
-/*The container will also serve as the SKY*/
-
-*{ margin: 0; padding: 0;}
-
-body {
-	/*To hide the horizontal scroller appearing during the animation*/
-	overflow: hidden;
-}
-
-#clouds{
+#clouds {
   position: fixed;
   top: 0;
   left: 0;
@@ -26,127 +15,153 @@ body {
 
 /*Time to finalise the cloud shape*/
 .cloud {
-	width: 200px; height: 60px;
-	background: #fff;
-	
-	border-radius: 200px;
-	-moz-border-radius: 200px;
-	-webkit-border-radius: 200px;
-	
-	position: absolute; 
-    top: 50px;
-	animation: moveclouds 30s linear infinite;
-	opacity: 0;
-  	animation: fadeinmove 30s linear infinite;
+  width: 200px;
+  height: 60px;
+  background: #fff;
+
+  border-radius: 200px;
+  -moz-border-radius: 200px;
+  -webkit-border-radius: 200px;
+
+  position: absolute;
+  top: 50px;
+  animation: moveclouds 30s linear infinite;
+  opacity: 0;
+  animation: fadeinmove 30s linear infinite;
 }
 
-.cloud:before, .cloud:after {
-	content: '';
-	position: absolute; 
-	background: #fff;
-	width: 100px; height: 80px;
-	position: absolute; top: -15px; left: 10px;
-	
-	border-radius: 100px;
-	-moz-border-radius: 100px;
-	-webkit-border-radius: 100px;
-	
-	-webkit-transform: rotate(30deg);
-	transform: rotate(30deg);
-	-moz-transform: rotate(30deg);
+.cloud:before,
+.cloud:after {
+  content: "";
+  position: absolute;
+  background: #fff;
+  width: 100px;
+  height: 80px;
+  position: absolute;
+  top: -15px;
+  left: 10px;
+
+  border-radius: 100px;
+  -moz-border-radius: 100px;
+  -webkit-border-radius: 100px;
+
+  -webkit-transform: rotate(30deg);
+  transform: rotate(30deg);
+  -moz-transform: rotate(30deg);
 }
 
 .cloud:after {
-	width: 120px; height: 120px;
-	top: -55px; left: auto; right: 15px;
+  width: 120px;
+  height: 120px;
+  top: -55px;
+  left: auto;
+  right: 15px;
 }
 
 /*Time to animate*/
 .x1 {
-	-webkit-animation: moveclouds 15s linear infinite;
-	-moz-animation: moveclouds 15s linear infinite;
-	-o-animation: moveclouds 15s linear infinite;
+  -webkit-animation: moveclouds 60s linear infinite;
+  -moz-animation: moveclouds 60s linear infinite;
+  -o-animation: moveclouds 60s linear infinite;
 }
 
 /*variable speed, opacity, and position of clouds for realistic effect*/
 .x2 {
-	left: 200px;
-  Top: 300px;
-	
-	-webkit-transform: scale(0.6);
-	-moz-transform: scale(0.6);
-	transform: scale(0.6);
-	opacity: 0.6; /*opacity proportional to the size*/
-	
-	/*Speed will also be proportional to the size and opacity*/
-	/*More the speed. Less the time in 's' = seconds*/
-	-webkit-animation: moveclouds 25s linear infinite;
-	-moz-animation: moveclouds 25s linear infinite;
-	-o-animation: moveclouds 25s linear infinite;
+  left: 200px;
+  top: 300px;
+
+  -webkit-transform: scale(0.6);
+  -moz-transform: scale(0.6);
+  transform: scale(0.6);
+  opacity: 0.6; /*opacity proportional to the size*/
+
+  /*Speed will also be proportional to the size and opacity*/
+  /*More the speed. Less the time in 's' = seconds*/
+  -webkit-animation: moveclouds 50s linear infinite;
+  -moz-animation: moveclouds 50s linear infinite;
+  -o-animation: moveclouds 50s linear infinite;
 }
 
 .x3 {
-	left: -250px; top: -200px;
-	
-	-webkit-transform: scale(0.8);
-	-moz-transform: scale(0.8);
-	transform: scale(0.8);
-	opacity: 0.8; /*opacity proportional to the size*/
-	
-	-webkit-animation: moveclouds 20s linear infinite;
-	-moz-animation: moveclouds 20s linear infinite;
-	-o-animation: moveclouds 20s linear infinite;
+  left: -250px;
+  top: -200px;
+
+  -webkit-transform: scale(0.8);
+  -moz-transform: scale(0.8);
+  transform: scale(0.8);
+  opacity: 0.8; /*opacity proportional to the size*/
+
+  -webkit-animation: moveclouds 40s linear infinite;
+  -moz-animation: moveclouds 40s linear infinite;
+  -o-animation: moveclouds 40s linear infinite;
 }
 
 .x4 {
-	left: 470px; top: -250px;
-	
-	-webkit-transform: scale(0.75);
-	-moz-transform: scale(0.75);
-	transform: scale(0.75);
-	opacity: 0.75; /*opacity proportional to the size*/
-	
-	-webkit-animation: moveclouds 18s linear infinite;
-	-moz-animation: moveclouds 18s linear infinite;
-	-o-animation: moveclouds 18s linear infinite;
+  left: 470px;
+  top: -250px;
+
+  -webkit-transform: scale(0.75);
+  -moz-transform: scale(0.75);
+  transform: scale(0.75);
+  opacity: 0.75; /*opacity proportional to the size*/
+
+  -webkit-animation: moveclouds 45s linear infinite;
+  -moz-animation: moveclouds 45s linear infinite;
+  -o-animation: moveclouds 45s linear infinite;
 }
 
 .x5 {
-	left: -150px; top: -150px;
-	
-	-webkit-transform: scale(0.8);
-	-moz-transform: scale(0.8);
-	transform: scale(0.8);
-	opacity: 0.8; /*opacity proportional to the size*/
-	
-	-webkit-animation: moveclouds 20s linear infinite;
-	-moz-animation: moveclouds 20s linear infinite;
-	-o-animation: moveclouds 20s linear infinite;
+  left: -150px;
+  top: -150px;
+
+  -webkit-transform: scale(0.8);
+  -moz-transform: scale(0.8);
+  transform: scale(0.8);
+  opacity: 0.8; /*opacity proportional to the size*/
+
+  -webkit-animation: moveclouds 55s linear infinite;
+  -moz-animation: moveclouds 55s linear infinite;
+  -o-animation: moveclouds 55s linear infinite;
 }
 
 @keyframes moveclouds {
   0% {
-    transform: translateX(100vw);  /* Start offscreen right */
-    opacity: 0;                    /* Start invisible */
+    transform: translateX(100vw);
+    opacity: 0;
   }
   10% {
-    opacity: 1;                    /* Fade in early */
+    opacity: 1;
   }
   90% {
-    opacity: 1;                    /* Stay visible most of the way */
+    opacity: 1;
   }
   100% {
-    transform: translateX(-150vw); /* Exit left beyond screen */
-    opacity: 0;                    /* Fade out before disappearing */
+    transform: translateX(-150vw);
+    opacity: 0;
   }
+}
 
 @keyframes fadeinmove {
-  0%   { transform: translateX(100vw); opacity: 0; }
-  10%  { opacity: 1; }
-  90%  { opacity: 1; }
-  100% { transform: translateX(-150vw); opacity: 0; }
+  0% {
+    transform: translateX(100vw);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(-150vw);
+    opacity: 0;
+  }
 }
 
+@media (max-width: 768px) {
+  .row .col-sm-2 {
+    flex: 0 0 100%;
+    max-width: 100%;
+    margin-right: 0 !important;
+  }
 }
-
-

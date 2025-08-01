@@ -23,36 +23,32 @@
 </div>
 <!-- shows logo -->
 
-    <div class="skycast-logo mt-2 text-center p-2">
+    <div class="skycast-logo mt-2 text-center p-2 fst-italic">
         <h1>Skycast Weather Dashboard</h1>
 </div>
     <div class="container">
-
-        <div class="row">
+         <div class="row">
             <div class="col-sm-3">
 
                 <!-- search bar -->
 
-                <h2 class="pt-1">Search City:</h2>
-
+                <h2 class="pt-1 fst-italic">Search City:</h2>
                 <div class="mb-3">
-                    <input type="text" id="input-search" placeholder="🏙️">
-                    
+                    <input type="text" id="input-search" placeholder="🏙️">  
                     <div class="">
-                        <button class="btn bg-danger text-light" id="input-button">Search</button>
+                        <button class="btn bg-success text-light" id="input-button">Search</button>
                     </div>
                 </div>
-
-                <button class="btn btn-dark" id="remove">Clear</button>
+                <button class="btn btn-secondary" id="remove">Clear</button>
                 <form id="history"></form>
-                <ul class="list-group"></ul>
+                <ul class="list-group fst-italic"></ul>
             </div>
 
             <!-- City name and current weather section -->
 
         <div class="col-sm-8 pt-3">
             <div
-                class="row fw-bold bg-warning-subtle border border-dark border-3 rounded-3 fst-italic fs-3">
+                class="row fw-bold bg-secondary-subtle border border-dark border-3 rounded-3 fst-italic fs-3">
                 <div class="col-sm-12">
                     
                     <p><span id="show-city"></span>
@@ -65,19 +61,19 @@
 
             <!-- 5 day weather forecast section -->
 
-            <div class="col-sm-12 pt-2">
-                <h3>5 Day Weather Forecast</h3>
-                <div class="row">
-                    <div
-                        class="col-sm-2 fw-bold bg-info-subtle border border-secondary border-3 rounded-2 text-dark ml-2  p-2 me-4 mt-2">
-                        <p id="datecol0"></p>
+    <div class="col-sm-12 pt-2">
+        <h3>5 Day Weather Forecast</h3>
+        <div class="row">
+            <div 
+            class="col-sm-2 fw-bold bg-primary-subtle border border-secondary border-3 rounded-2 text-dark ml-2 p-2 me-4 mt-2 fst-italic">
+                    <p id="datecol0"></p>
                         <p id="imgcol0"></p>
-                        <p>Temp: <span id="tempcol0"></span></p>
+                        <p>Temp: <span id="tempcol0"></p>
                         <p>Humidity: <span id="humidcol0"></span></p>
                         <p>Wind: <span id="windcol0"></span></p>
                     </div>
                     <div
-                        class="col-sm-2 fw-bold bg-success-subtle border border-secondary border-3 rounded-2 text-dark ml-2  p-2 me-4 mt-2">
+                        class="col-sm-2 fw-bold bg-success-subtle border border-secondary border-3 rounded-2 text-dark ml-2  p-2 me-4 mt-2 fst-italic">
                         <p id="datecol1"></p>
                         <p id="imgcol1"></p>
                         <p>Temp: <span id="tempcol1"></span></p>
@@ -85,7 +81,7 @@
                         <p>Wind: <span id="windcol1"></span></p>
                     </div>
                     <div
-                        class="col-sm-2 fw-bold bg-info-subtle border border-secondary border-3 rounded-2 text-dark ml-2  p-2 me-4 mt-2">
+                        class="col-sm-2 fw-bold bg-danger-subtle border border-secondary border-3 rounded-2 text-dark ml-2  p-2 me-4 mt-2 fst-italic">
                         <p id="datecol2"></p>
                         <p id="imgcol2"></p>
                         <p>Temp: <span id="tempcol2"></span></p>
@@ -93,7 +89,7 @@
                         <p>Wind: <span id="windcol2"></span></p>
                     </div>
                     <div
-                        class="col-sm-2 fw-bold bg-success-subtle border border-secondary border-3 rounded-2 text-dark ml-2  p-2 me-4 mt-2">
+                        class="col-sm-2 fw-bold bg-warning-subtle border border-secondary border-3 rounded-2 text-dark ml-2  p-2 me-4 mt-2 fst-italic">
                         <p id="datecol3"></p>
                         <p id="imgcol3"></p>
                         <p>Temp: <span id="tempcol3"></span></p>
@@ -101,7 +97,7 @@
                         <p>Wind: <span id="windcol3"></span></p>
                     </div>
                     <div
-                        class="col-sm-2 fw-bold bg-info-subtle border border-secondary border-3 rounded-2 text-dark ml-2  p-2 me-4 mt-2">
+                        class="col-sm-2 fw-bold bg-info-subtle border border-secondary border-3 rounded-2 text-dark ml-2  p-2 me-4 mt-2 fst-italic">
                         <p id="datecol4"></p>
                         <p id="imgcol4"></p>
                         <p>Temp: <span id="tempcol4"></span></p>
